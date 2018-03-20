@@ -15,22 +15,3 @@ Own a garage or parking space that you rarely use and want to make some extra si
 
 User
 has_many :listings
-
-Location
-has_many
-
-Listing
-has_attached_file
-
-Reservation
-belongs_to :user
-belongs_to :listing
-
-Message
-belongs_to :user
-belongs_to :conversation
-
-Conversation
-
-
-Calendar or Time Limit on Reservation
