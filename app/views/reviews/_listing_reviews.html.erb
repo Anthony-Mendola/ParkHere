@@ -1,0 +1,21 @@
+<ul id="reviews" class="list-unstyled">
+  <% reviews.each do |review| %>
+  <li>
+    <div class="card">
+      <div class="card-header">
+        <small><strong><%= review.user.name.to_s %></strong> - <%= review.updated_at.strftime("%e %B %Y %H:%M %p") %></small>
+      </div>
+      <div class="card-body">
+          <p>
+           <%= review.message %>
+           <% if owner?(review) %>
+            <span class="review-options">
+              <%= link_to "Edit", edit_listing_review_path(listing, review) %> | <%= link_to "Delete", listing_review_path(listing, review), method: :delete %>
+            </span>
+           <% end %>
+         </p>
+     </div>
+   </div>
+  </li>
+ <% end %>
+</ul>

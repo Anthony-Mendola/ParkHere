@@ -29,7 +29,7 @@ class Listing < ApplicationRecord
     end
 
     def most_recent_reviews
-      comments.limit(5)
+      reviews.limit(5)
     end
 
   end

@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :listings
-  has_many :recipes
+  has_many :reviews
 
   has_many :reviews
   devise :database_authenticatable, :registerable,

@@ -1,0 +1,9 @@
+<%= form_for [@listing, @review] do |f| %>
+  <div class="form-group">
+    <%= f.text_area :content, placeholder: 'Type in your review...', class: 'form-control' %>
+  </div>
+
+  <div class="form-buttons">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
