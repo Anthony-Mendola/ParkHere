@@ -28,8 +28,8 @@ class Listing < ApplicationRecord
       order('updated_at DESC')
     end
 
-    def most_recent_reviews
-      reviews.limit(5)
-    end
+    #def most_recent_reviews
+    #  reviews.limit(3)
+  #  end
 
   end

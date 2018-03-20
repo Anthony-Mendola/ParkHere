@@ -6,7 +6,7 @@
   <small class="text-muted">
     <%= display_listing_categories(@listing.categories) %>
   </small>
-  <small><%= @listing.prep_time %> minutes</small>
+  <small><%= @listing.cost %> minutes</small>
 </h4>
 
 <% if @listing.image.file? %>
@@ -18,7 +18,7 @@
     <h3>Types</h3>
     <table>
       <tbody>
-        <% @listing.Types.each do |type| %>
+        <% @listing.types.each do |type| %>
           <tr>
             <td><%= type.name %></td>
           </tr>
