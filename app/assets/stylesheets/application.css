@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+ @import "listing";
+ @import "forms";
+
+ html, body {
+   font-family: 'Open Sans', sans-serif;
+ }
+
+ nav.navbar {
+    border-bottom: 8px solid #FFD700;
+    font-weight: bold;
+
+    a, a.active, a:visited {
+     color: #FFD700;
+    }
+
+ }
+
+ #flash-messages {
+   margin-top: 20px;
+ }
+
+ #content {
+   margin-top: 50px;
+ }
+
+ .sign-up-form, .sign-in-form {
+   width: 50%;
+   margin: 0 auto;
+ }
+
+ .devise-links {
+   margin-top: 20px;
+ }
