@@ -1,7 +1,10 @@
 class Listing < ApplicationRecord
   belongs_to :user
 
-  has_many :types, dependent: :destroy
+    geocoded_by :address
+    after_validation :geocode
+
+    has_many :types, dependent: :destroy
 
     has_many :reviews, dependent: :destroy
     has_many :reviewers, through: :reviews, source: :user
@@ -28,8 +31,15 @@ class Listing < ApplicationRecord
       order('updated_at DESC')
     end
 
+    def self.search(search)
+        if search
+            search = search.downcase
+            where("lower(title) LIKE ?", "%#{search}%")
+        else
+          all
+        end
+      end
+    end
     #def most_recent_reviews
     #  reviews.limit(3)
   #  end
-
-  end
