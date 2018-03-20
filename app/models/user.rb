@@ -1,5 +1,9 @@
 class User < ApplicationRecord
+<<<<<<< HEAD
   has_many :listings
+=======
+  has_many :recipes
+>>>>>>> 38943aadfb3112bd04576ac28853d8a143e6d381
   has_many :reviews
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
