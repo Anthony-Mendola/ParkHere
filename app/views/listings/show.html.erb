@@ -58,4 +58,13 @@
 
 </div>
 
+<%= javascript_tag do %>
+	latitude = '<%= j @listing.latitude.to_s %>';
+	longitude = '<%= j @listing.longitude.to_s %>';
+	title = '<%= j @listing.title %>';
+	cost = '<%= j number_to_currency(@listing.cost) %>';
+	address = '<%= j @listing.address %>';
+<% end %>
+
+
 <%= link_to "<< Back to Listings", root_path, class: 'btn btn-outline-primary btn-small back-to-listing-button'%>
