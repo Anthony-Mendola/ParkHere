@@ -1,0 +1,61 @@
+<h1 class="listing-title text-center">
+  <%= @listing.title %>
+</h1>
+
+<h4 class="listing-details text-center">
+  <small class="text-muted">
+    <%= display_listing_categories(@listing.categories) %>
+  </small>
+  <small><%= @listing.prep_time %> minutes</small>
+</h4>
+
+<% if @listing.image.file? %>
+  <%= image_tag @listing.image.url(:large), class: 'listing-image img-fluid rounded mx-auto d-block' %>
+<% end %>
+
+<div class="listing-smaller-box">
+  <div class="listing-Types">
+    <h3>Types</h3>
+    <table>
+      <tbody>
+        <% @listing.Types.each do |type| %>
+          <tr>
+            <td><%= type.name %></td>
+          </tr>
+        <% end  %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="listing-details">
+    <h3>Details</h3>
+    <p class="text-justify"><%= @listing.description %></p>
+
+    <div class="btn-group" role="group">
+      <div class="form-buttons">
+        <% if owner?(@listing) %>
+          <%= link_to "Edit listing", edit_listing_path(@listing), class: 'btn btn-outline-primary btn-sm'%>
+          <%= link_to "Delete listing", @listing, method: :delete, data: { confirm: "Are you sure you want to delete this listing?"}, class: 'btn btn-outline-danger btn-sm' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="listing-reviews">
+  <h3>Reviews</h3>
+  <%= render 'reviews/form' %>
+
+  <% if @reviews.present? %>
+    <!-- only show 3 reviews on the listing page -->
+    <%= render 'reviews/listing_reviews', reviews: @reviews, listing: @listing %>
+
+    <div class="text-center">
+      <%= link_to "View all reviews", listing_reviews_path(@listing) %>
+    </div>
+
+  <% end %>
+
+</div>
+
+<%= link_to "<< Back to Listings", root_path, class: 'btn btn-outline-primary btn-small back-to-listing-button'%>
