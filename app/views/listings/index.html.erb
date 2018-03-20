@@ -1,3 +1,15 @@
+<div class="post-banner"></div>
+<div class="container">
+  <h1> All Listings</h1>
+<%= form_tag listings_path, :method => 'get', class: 'navbar-form navbar-left' do%>
+    <div class='form-group'>
+      <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
+    </div>
+    <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
+  <% end %>
+</div>
+
+
 <% @listings.each_slice(3) do |listings| %>
   <div class="row">
 
