@@ -10,31 +10,17 @@
 </div>
 
 
-<% @listings.each_slice(3) do |listings| %>
-  <div class="row">
-
-    <% listings.each do |listing| %>
-      <div class="col-lg">
-
-        <div class="listing-box">
-          <%= link_to listing_path(listing) do %>
-            <div class="listing-box-title">
-              <p><%= listing.title %></p>
-            </div>
-            <div class="listing-box-image-wrapper">
-              <%= image_tag listing.image.url(:medium), class: 'listing-box-image rounded' %>
-            </div>
-          <% end %>
-        </div>
-
-      </div>
+<% @listings.each do |listing| %>
+<div class="col-md-3">
+  <div class="thumbnail">
+    <%= link_to listing do %>
+    <%= image_tag listing.image, class: 'listing-images' %>
     <% end %>
-
-  </div>
-<% end %>
-
-<% if request.path != '/all' %>
-  <div class='text-center'>
-    <%= link_to 'View all listings', all_listings_path %>
-  </div>
-<% end %>
+    <p>
+      <strong><%= link_to listing.title, listing %></strong>
+      </p>
+      <p><%= number_to_currency(listing.cost) %></p>
+      </div>
+      </div>
+      <% end %>
+      </div>

@@ -13,12 +13,8 @@
   <small class="text-muted">
     <%= display_listing_categories(@listing.categories) %>
   </small>
-  <small><%= @listing.cost %> minutes</small>
+  <p><%= number_to_currency @listing.cost %></p>
 </h4>
-
-<% if @listing.image.file? %>
-  <%= image_tag @listing.image.url(:large), class: 'listing-image img-fluid rounded mx-auto d-block' %>
-<% end %>
 
 <div class="listing-smaller-box">
   <div class="listing-Types">
@@ -49,6 +45,7 @@
   </div>
 </div>
 </div>
+
 <div class="listing-reviews">
   <h3>Reviews</h3>
   <%= render 'reviews/form' %>

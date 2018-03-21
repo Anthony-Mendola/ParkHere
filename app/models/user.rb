@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :listings
   has_many :reviews
 
-  has_many :reviews
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
@@ -14,7 +14,7 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      # user.skip_confirmation!
+
     end
   end
 
