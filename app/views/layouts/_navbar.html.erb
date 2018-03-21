@@ -1,14 +1,28 @@
-<nav class="navbar navbar-default">
-  <div class="container">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
 
-    <div class="navbar-header">
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        Menu <i class="fa fa-bars"></i>
+      </button>
       <%= link_to "ParkHere", root_path, class: "navbar-brand" %>
     </div>
 
-    <ul class="nav navbar-new">
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Listings', listings_path %></li>
+        <!-- Search form -->
+        <%= form_tag listings_path, :method => 'get', class: 'navbar-form navbar-left' do %>
+        <div class='form-group col-xs-12 floating-label-form-group controls'>
+          <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
+        </div>
+        <%= submit_tag "Search", :name => nil, id: 'btn-navbar-search', tabindex: '-1' %>
+        <% end %>
+        <!-- /search form -->
       <% if user_signed_in? %>
         <li class="nav-item"><span class="nav-link">Hello <%= current_user.name %></span></li>
-        <li class="nav-item"><%= link_to "New Listing", new_listing_path, class: "nav-link" %></li>
+        <li><%= link_to "New Listing", new_listing_path, class: "navbar-link" %></li>
         <li class="nav-item"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
       <% else %>
         <li class="nav-item"><%= link_to "Sign up", new_user_registration_path, class: "nav-link"%></li>
