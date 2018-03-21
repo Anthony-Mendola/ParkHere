@@ -64,6 +64,9 @@ class ListingsController < ApplicationController
         :contact,
         :cost,
         :image,
+        :address,
+        :longitude,
+        :latitude,
         types_attributes: [:id, :name, :_destroy],
         category_ids: [],
         categories_attributes: [:name]

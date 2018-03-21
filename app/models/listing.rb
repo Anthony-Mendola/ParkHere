@@ -1,5 +1,5 @@
 class Listing < ApplicationRecord
-  belongs_to :user
+    belongs_to :user
 
     geocoded_by :address
     after_validation :geocode
@@ -14,8 +14,9 @@ class Listing < ApplicationRecord
 
     validates :title, :description, :cost, :contact, :image, presence: true
     validates :title, length: { in: 1..90 }
+    validates :description, length: { minimum: 10 }
 
-    has_attached_file :image, styles: { medium: "300x300#", large: "500x500#"  }, default_url: "/images/:style/missing.png"
+    has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>"  }, default_url: "/images/:style/missing.png"
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
     def categories_attributes=(category_attributes)

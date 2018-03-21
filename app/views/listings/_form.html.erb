@@ -64,6 +64,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :address, "Address" %>
+    <%= f.text_area :address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <fieldset>
       <%= f.label :image, "Upload Image" %>
       <%= f.file_field :image, class: 'form-control-file' %>
