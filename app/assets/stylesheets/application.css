@@ -2,8 +2,8 @@
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
@@ -11,39 +11,10 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require clean-blog.min
+ *= require custom
  *= require_self
  */
- @import "bootstrap";
- @import "listing";
- @import "forms";
 
- html, body {
-   font-family: 'Open Sans', sans-serif;
- }
-
- nav.navbar {
-    border-bottom: 8px solid #FFD700;
-    font-weight: bold;
-
-    a, a.active, a:visited {
-     color: #FFD700;
-    }
-
- }
-
- #flash-messages {
-   margin-top: 20px;
- }
-
- #content {
-   margin-top: 50px;
- }
-
- .sign-up-form, .sign-in-form {
-   width: 50%;
-   margin: 0 auto;
- }
-
- .devise-links {
-   margin-top: 20px;
- }
+@import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
