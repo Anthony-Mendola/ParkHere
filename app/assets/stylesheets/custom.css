@@ -21,3 +21,35 @@
 #content {
   margin-top: 50px;
 }
+
+.review-options {
+  margin-left: 20px;
+}
+
+#reviews .card {
+  margin-bottom: 15px;
+}
+
+#reviews {
+  margin-top: 50px;
+}
+
+.nested-fields {
+  margin-bottom: 10px;
+}
+
+.listing-smaller-box {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.listing-types h3,
+.listing-reviews h3 {
+  font-size: 50px;
+  font-family: 'Amatic SC', cursive;
+}
+
+.add-type {
+  margin-top: 10px;
+}

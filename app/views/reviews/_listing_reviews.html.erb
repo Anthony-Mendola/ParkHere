@@ -7,7 +7,7 @@
       </div>
       <div class="card-body">
           <p>
-           <%= review.message %>
+           <%= review.content %>
            <% if owner?(review) %>
             <span class="review-options">
               <%= link_to "Edit", edit_listing_review_path(listing, review) %> | <%= link_to "Delete", listing_review_path(listing, review), method: :delete %>

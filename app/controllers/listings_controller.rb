@@ -4,11 +4,7 @@ class ListingsController < ApplicationController
   before_action only: [:edit, :update, :destroy] { authorize_user!(@listing) }
 
   def index
-    if request.path == '/all'
-      @listings = Listing.most_recently_updated
-    else
-      @listings = Listing.most_recently_updated.limit(9)
-    end
+  @listings = Listing.search(params[:search])
   end
 
   def show

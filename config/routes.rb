@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
 root 'listings#index'
 
-  resources :listings
+  resources :listings do
+    resources :categories
+    resources :reviews
+  end
 
 end
