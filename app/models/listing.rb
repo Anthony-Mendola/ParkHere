@@ -40,7 +40,6 @@ class Listing < ApplicationRecord
           all
         end
       end
-    end
-    #def most_recent_reviews
-    #  reviews.limit(3)
-  #  end
+
+  
+  end

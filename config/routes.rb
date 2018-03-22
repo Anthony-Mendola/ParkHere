@@ -7,5 +7,5 @@ root 'listings#index'
     resources :categories
     resources :reviews
   end
-
-end
+  get 'all', to: 'recipes#index', as: 'all_recipes'
+  end
