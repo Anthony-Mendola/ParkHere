@@ -9,3 +9,15 @@
 #navbar-brand {
 	font-family: arial;
 }
+
+#flash-messages {
+  margin-top: 20px;
+}
+
+.devise-links {
+  margin-top: 20px;
+}
+
+#content {
+  margin-top: 50px;
+}

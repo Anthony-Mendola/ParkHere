@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
 
   def create
     listing = Listing.find_by(id: params[:listing_id])
-    @review = listing.reviews.create(user_id: current_user.id, message: review_params[:message])
+    @review = listing.reviews.create(user_id: current_user.id, content: review_params[:content])
 
     if @review
       flash[:notice] = "review added"
@@ -44,7 +44,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:message)
+    params.require(:review).permit(:content)
   end
 
   def set_review
