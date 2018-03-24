@@ -19,6 +19,9 @@ class Listing < ApplicationRecord
     has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>"  }, default_url: "/images/:style/missing.png"
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
+    scope :by_category, -> (category_ids) { joins(:listing_categories).where(listing_categories: {category_id: category_ids}).distinct }
+
+
     def categories_attributes=(category_attributes)
       category_attributes.values.each do |category_attribute|
         if !category_attribute['name'].blank?
@@ -41,5 +44,5 @@ class Listing < ApplicationRecord
         end
       end
 
-  
+
   end

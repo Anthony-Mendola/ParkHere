@@ -24,11 +24,11 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem "paperclip", "~> 5.2.0"
 gem 'twitter-bootstrap-rails'
-gem 'dotenv-rails'
 gem 'geocoder'
 gem 'figaro'
 gem 'simple_form'
 gem 'jquery-rails'
+gem "cocoon"
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
