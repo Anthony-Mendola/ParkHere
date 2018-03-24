@@ -2,7 +2,7 @@
   <% reviews.each do |review| %>
   <li>
     <div class="card">
-      <div class="card-header">
+      <div class="post-preview">
         <small><strong><%= review.user.name.to_s %></strong> - <%= review.updated_at.strftime("%e %B %Y %H:%M %p") %></small>
       </div>
       <div class="card-body">
