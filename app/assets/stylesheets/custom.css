@@ -65,3 +65,19 @@
   position: relative;
   bottom: 0px;
 }
+
+.form-buttons {
+  input {
+    cursor: pointer;
+  }
+}
+
+.field_with_errors {
+  label {
+    color: red;
+  }
+  .form-control {
+    @extend .is-invalid;
+  }
+
+}

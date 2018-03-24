@@ -1,13 +1,15 @@
 <div class="nested-fields">
   <div class="form-row">
     <div class="col-auto">
-      <%= f.text_field :length, placeholder: 'Length in inches', class: 'form-control' %>
+      <%= f.fields_for :listing_types do |listing_type| %>
+        <%= listing_type.text_field :length, placeholder: 'Length in inches', class: 'form-control' %>
+        <% end %>
     </div>
     <div class="col-auto">
       <%= f.text_field :name, placeholder: ' Type name', class: 'form-control' %>
     </div>
     <div class="col-auto">
-      <%= link_to_remove_association "remove", f, class: 'btn btn-outline-danger' %>
+      <%#= link_to_remove_association "remove", f, class: 'btn btn-outline-danger' %>
     </div>
   </div>
 </div>

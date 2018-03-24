@@ -12,10 +12,13 @@
 		<h3><%= display_listing_categories(@listing.categories) %></h3>
 		<p><%= number_to_currency @listing.cost %></p>
 		<h4>Contact:</h4><p><%= @listing.contact %><p>
-			<h3>Details</h3>
-			<p><%= @listing.description %></p>
+		<h3>Details</h3>
+		<p><%= @listing.description %></p>
+		<h3>Type</h3>
+		<% @listing.types.each do |type| %>
+		<% type.name %>
+		<% end %>
 		</div>
-
 
     <div class="btn-group" role="group">
       <div class="form-buttons">
@@ -35,7 +38,7 @@
   <%= render 'reviews/form' %>
 
   <% if @reviews.present? %>
-    <!-- only show 3 reviews on the listing page -->
+    <!-- shows last 3 reviews on the listing page -->
     <%= render 'reviews/listing_reviews', reviews: @reviews, listing: @listing %>
 
     <div class="text-center">
