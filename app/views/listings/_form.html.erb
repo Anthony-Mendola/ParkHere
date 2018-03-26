@@ -16,6 +16,7 @@
 	<%= f.input :title %>
 	<%= f.input :cost %>
 	<%= f.input :description %>
+
 	<div class="form-group">
     <fieldset>
       <% if @categories.present? %>
@@ -30,19 +31,23 @@
 		</fieldset>
   </div>
 <br>
-<div class="form-group">
-	<fieldset>
-		<h4>Vehicle Types</h4>
-	<% f.fields_for :types do |l| %>
-		<%= l.label :name %>:
-		<%= l.text_field :name %>
-		<% l.fields_for :listing_types do |lt| %>
-		<% lt.label :length %>
-		<% lt.text_field :length %>
-		<% end %>
-	</fieldset>
-</div>
-<% end %>
+
+  <h3>
+    Vehicle Types
+  </h3>
+	<div class="col-auto">
+			<%= f.fields_for :types do |type| %>
+			<%= type.label :name %>
+			<%= type.text_field :name, placeholder: ' Type name', class: 'form-control' %>
+			<%= type.fields_for :listing_types do |listing_type| %>
+			<%= listing_type.label :length %>
+			<%= listing_type.text_field :length, placeholder: 'Length in inches', class: 'form-control' %>
+			<% end %>
+			</div>
+	<% end %>
+
+<br>
+
 	<%= f.input :contact %>
 	<%= f.input :image, as: :file %>
 	<%= f.input :address %>

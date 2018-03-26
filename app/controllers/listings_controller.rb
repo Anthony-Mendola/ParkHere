@@ -64,7 +64,7 @@ class ListingsController < ApplicationController
         :address,
         :longitude,
         :latitude,
-        types_attributes: [:name, :_destroy, :listing_types => [:length]],
+        :types_attributes => [:name, :listing_types => [:length]],
         category_ids: [],
         categories_attributes: [:name]
         )

@@ -1,2 +1,0 @@
-class ListingTypesController < ApplicationController
-end
