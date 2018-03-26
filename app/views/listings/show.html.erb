@@ -14,9 +14,11 @@
 		<h4>Contact:</h4><p><%= @listing.contact %><p>
 		<h3>Details</h3>
 		<p><%= @listing.description %></p>
+
 		<h3>Type</h3>
-		<% @listing.types.each do |type| %>
-		<% type.name %>
+		<% @listing.listing_types.each do |listing_type| %>
+		<% listing_type.type.name %>
+		<% listing_type.length %>
 		<% end %>
 		</div>
 

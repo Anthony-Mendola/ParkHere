@@ -27,7 +27,8 @@ class ListingsController < ApplicationController
       flash[:notice] = 'Successfully created listing'
       redirect_to @listing
     else
-      @listing.types.build
+  #   @new_type =  @listing.types.build(params[:listing][:types][:name])
+  #  @new_type.listing_type.build
       render :new
     end
   end
@@ -63,7 +64,7 @@ class ListingsController < ApplicationController
         :address,
         :longitude,
         :latitude,
-        types_attributes: [:id, :name, :length, :_destroy],
+        types_attributes: [:id, :name, :length, :_destroy, :listing_types => [:length]],
         category_ids: [],
         categories_attributes: [:name]
         )
@@ -71,6 +72,6 @@ class ListingsController < ApplicationController
     end
 
     def set_listing
-      @listing = Listing.find(params[:id])
+      @listing = Listing.find_by(params[:id])
     end
 end

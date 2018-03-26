@@ -2,7 +2,6 @@ class ListingType < ApplicationRecord
   belongs_to :listing
   belongs_to :type
 
-  def name
-    type.name
-  end
+validates_presence_of :length
+
 end
