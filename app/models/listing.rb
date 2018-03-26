@@ -25,7 +25,7 @@ class Listing < ApplicationRecord
 
     scope :by_category, -> (category_ids) { joins(:listing_categories).where(listing_categories: {category_id: category_ids}).distinct }
 
-  #accepts_nested_attributes_for :types
+  accepts_nested_attributes_for :types
 
     def types_attributes=(types_attributes)
       types_attributes.values.each do |types_attribute|

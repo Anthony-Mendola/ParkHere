@@ -14,8 +14,9 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
+    type = @listing.types.build
+    type.listing_types.build
     @categories = Category.all
-    @listing.types.build
     @new_category = @listing.categories.build
   end
 
@@ -64,7 +65,7 @@ class ListingsController < ApplicationController
         :address,
         :longitude,
         :latitude,
-        :types_attributes => [:name, :listing_types => [:length]],
+        :types_attributes => [:id, :name, :listing_types => [:length]],
         category_ids: [],
         categories_attributes: [:name]
         )
