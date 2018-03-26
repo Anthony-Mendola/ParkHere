@@ -4,7 +4,9 @@ class Listing < ApplicationRecord
     geocoded_by :address
     after_validation :geocode
 
+    has_many :listing_types
     has_many :types, through: :listing_types
+
 
     has_many :reviews, dependent: :destroy
     has_many :reviewers, through: :reviews, source: :user
@@ -23,17 +25,17 @@ class Listing < ApplicationRecord
 
     scope :by_category, -> (category_ids) { joins(:listing_categories).where(listing_categories: {category_id: category_ids}).distinct }
 
-    accepts_nested_attributes_for :types
+  #  accepts_nested_attributes_for :types
 
     def types_attributes=(types_attributes)
       types_attributes.values.each do |types_attribute|
-        if !types_attribute['name'].empty?
-          type = Type.find_or_create_by(name: types_attribute['name'])
-          self.listing_types.build(listing: self, type: type, length: types_attribute
-          ["listing_types"]["length"])
+        if !types_attribute["name"].blank?
+          type = Type.find_or_create_by(name: types_attribute["name"])
+          self.listing_types.build(type: type, length: types_attribute["listing_types"]["length"])
         end
       end
     end
+
 
     def categories_attributes=(category_attributes)
       category_attributes.values.each do |category_attribute|

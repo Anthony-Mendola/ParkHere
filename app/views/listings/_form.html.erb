@@ -29,20 +29,20 @@
       <% end %>
 		</fieldset>
   </div>
-	<div class="form-group">
+<br>
+<div class="form-group">
 	<fieldset>
-		<p>
-			Vehicle Types
-		</p>
-		<%= f.fields_for :types do |type| %>
-			<%= render 'type_fields', f: type %>
+		<h4>Vehicle Types</h4>
+	<% f.fields_for :types do |l| %>
+		<%= l.label :name %>:
+		<%= l.text_field :name %>
+		<% l.fields_for :listing_types do |lt| %>
+		<% lt.label :length %>
+		<% lt.text_field :length %>
 		<% end %>
-
-		<div class="links">
-			<%= link_to_add_association '+ add type', f, :types, class: 'btn btn-primary' %>
-		</div>
 	</fieldset>
 </div>
+<% end %>
 	<%= f.input :contact %>
 	<%= f.input :image, as: :file %>
 	<%= f.input :address %>

@@ -15,3 +15,19 @@ Own a garage or parking space that you rarely use and want to make some extra si
 
 User
 has_many :listings
+
+
+<div class="form-group">
+<fieldset>
+  <p>
+    Vehicle Types
+  </p>
+  <%= f.fields_for :types do |type| %>
+    <%= render 'type_fields', f: type %>
+  <% end %>
+
+  <div class="links">
+    <%= link_to_add_association '+ add type', f, :types, class: 'btn btn-primary' %>
+  </div>
+</fieldset>
+</div>
