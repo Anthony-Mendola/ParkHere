@@ -31,3 +31,5 @@ has_many :listings
   </div>
 </fieldset>
 </div>
+
+listing_params["types_attributes"]["0"]["listing_types_attributes"]["0"]["length"]

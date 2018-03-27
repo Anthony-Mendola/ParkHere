@@ -25,13 +25,14 @@ class Listing < ApplicationRecord
 
     scope :by_category, -> (category_ids) { joins(:listing_categories).where(listing_categories: {category_id: category_ids}).distinct }
 
-  accepts_nested_attributes_for :types
+  #accepts_nested_attributes_for :types
 
     def types_attributes=(types_attributes)
       types_attributes.values.each do |types_attribute|
-        if types_attribute["name"] != ''
+        if !types_attribute["name"].empty?
           type = Type.find_or_create_by(name: types_attribute["name"])
-          self.listing_types.build(type: type, length: types_attribute["listing_types"]["length"])
+          self.listing_types.build(listing: self, type: type, length: types_attribute
+        ["length"])
         end
      end
     end

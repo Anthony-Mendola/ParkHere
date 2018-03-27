@@ -41,7 +41,7 @@
 			<%= type.text_field :name, placeholder: ' Type name', class: 'form-control' %>
 			<%= type.fields_for :listing_types do |listing_type| %>
 			<%= listing_type.label :length %>:
-			<%= listing_type.text_field :length, placeholder: 'Length in inches', class: 'form-control' %>
+			<%= listing_type.text_field :length, placeholder: 'Length of vehicle in inches', class: 'form-control' %>
 			<% end %>
 			</div>
 	<% end %>

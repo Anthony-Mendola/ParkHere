@@ -16,9 +16,13 @@
 		<p><%= @listing.description %></p>
 
 		<h3>Type</h3>
-		<% @listing.listing_types.each do |listing_type| %>
-		<%= listing_type.type.name %>
-		<%= listing_type.length %>
+		<% @listing.types.each do |type| %>
+		<%= type.name %>
+		<%# @listing.listing_types.each do |listing_type| %>
+		<%#= listing_type.type.name %>
+		<p>Length (in inches)</p>
+		<%= type.listing_types.find_by(listing: @listing.id).length %>
+		<%#= listing_type.length %>
 		<% end %>
 		</div>
 

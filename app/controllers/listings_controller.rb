@@ -21,6 +21,8 @@ class ListingsController < ApplicationController
   end
 
   def create
+
+    listing_params["length"] = listing_params["types_attributes"]["0"]["listing_types_attributes"]["0"]["length"].to_i
     @listing = Listing.new(listing_params)
     @listing.user_id = current_user.id
 
@@ -65,7 +67,7 @@ class ListingsController < ApplicationController
         :address,
         :longitude,
         :latitude,
-        :types_attributes => [:id, :name, :listing_types => [:length]],
+        :types_attributes => [:id, :name, :listing_types_attributes => [:length]],
         category_ids: [],
         categories_attributes: [:name]
         )
