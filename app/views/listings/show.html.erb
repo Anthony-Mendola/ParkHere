@@ -14,8 +14,7 @@
 		<h4>Contact:</h4><p><%= @listing.contact %><p>
 		<h3>Details</h3>
 		<p><%= @listing.description %></p>
-
-		<h3>Type</h3>
+		<h3>Vehicle Type</h3>
 		<% @listing.types.each do |type| %>
 		<%= type.name %>
 		<p>Length (in inches)</p>

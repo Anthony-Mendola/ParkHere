@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 root 'listings#index'
 
   resources :listings do
-    resources :categories
     resources :reviews
   end
-  get 'all', to: 'listings#index', as: 'all_listings'
+
+  resources :categories
   end

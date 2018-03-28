@@ -18,7 +18,7 @@ type.length
 - [X] Include reasonable validations for simple model objects (list of model objects with validations e.g. Recipe, Ingredient, Comment)
 Listing validates :title, :description, :cost, :contact, :image
 
-- [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g.Recipe.most_recently_updated URL: /)
+- [X] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g.Recipe.most_recently_updated URL: /)
 Listing.recent
 orders listings in descending order of most recently updated
 /listing
@@ -36,11 +36,15 @@ Devise
 Devise and Omniauth using Facebook
 - [X] Include nested resource show or index (URL e.g. recipes/19/comments)
 listings/3/reviews
-- [ ] Include nested resource "new" form (Comments: my 'new' form for a nested resource is inside the Recipe show page as i liked the user experience better that way. So in URL /recipes/19 you can find the 'Create Comment' form)
-- [ ] Include form display of validation errors (form URL e.g. /recipes/new)
+
+- [X] Include nested resource "new" form (Comments: my 'new' form for a nested resource is inside the Recipe show page as i liked the user experience better that way. So in URL /recipes/19 you can find the 'Create Comment' form)
+Reviews new form is nested inside the Listing show page. In URL /Listings/19 you can find the 'Create Review' form
+
+- [X] Include form display of validation errors (form URL e.g. /recipes/new)
+/listings/new
 
 Confirm:
-- [ ] The application is pretty DRY
-- [ ] Limited logic in controllers
-- [ ] Views use helper methods if appropriate
-- [ ] Views use partials if appropriate
+- [X] The application is pretty DRY
+- [X] Limited logic in controllers
+- [X] Views use helper methods if appropriate
+- [X] Views use partials if appropriate

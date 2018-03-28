@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find(params[:id])
-    authorize @category
+    #authorize @category
     @category.destroy
     redirect_to categories_path
   end
