@@ -23,7 +23,9 @@ class Listing < ApplicationRecord
     has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>"  }, default_url: "/images/:style/missing.png"
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-    scope :by_category, -> (category_ids) { joins(:listing_categories).where(listing_categories: {category_id: category_ids}).distinct }
+    #scope :by_category, -> (category_ids) { joins(:listing_categories).where(listing_categories: {category_id: category_ids}).distinct }
+
+    scope :recent, -> {order("listings.updated_at DESC")}
 
    #accepts_nested_attributes_for :types
 
@@ -51,13 +53,13 @@ class Listing < ApplicationRecord
       end
     end
 
-    def self.most_recently_updated
-      order('updated_at DESC')
-    end
+  #  def self.most_recently_updated
+  #    order('updated_at DESC')
+  #  end
 
     def self.search(search)
         if search
-            search = search.downcase
+           search = search.downcase
             where("lower(title) LIKE ?", "%#{search}%")
         else
           all

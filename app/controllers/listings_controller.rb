@@ -4,7 +4,7 @@ class ListingsController < ApplicationController
   before_action only: [:edit, :update, :destroy] { authorize_user!(@listing) }
 
   def index
-  @listings = Listing.search(params[:search])
+  @listings = Listing.recent.search(params[:search])
   end
 
   def show
@@ -23,7 +23,7 @@ class ListingsController < ApplicationController
   def create
     #listing_params["length"] = listing_params["types_attributes"]["0"]["listing_types_attributes"]["0"]["length"].to_i
     @listing = Listing.new(listing_params)
-    
+
     @listing.user_id = current_user.id
 
     if @listing.save
