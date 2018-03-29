@@ -35,8 +35,10 @@ class Listing < ApplicationRecord
         if !types_attribute["name"].empty?
         #  binding.pry
           type = Type.find_or_create_by(name: types_attribute["name"])
-          self.types << type
-          self.listing_types.last.update(length: types_attribute["listing_types_attributes"]["0"]["length"])
+        #  self.types << type
+        #    binding.pry
+        self.listing_types.build(type: type, length: types_attribute["listing_types_attributes"]["0"]["length"])
+        #  self.listing_types.last.update(length: types_attribute["listing_types_attributes"]["0"]["length"])
 
           #self.listing_types.build(type: type, length: types_attribute["listing_types_attributes"]["id"]["length"])
         end
