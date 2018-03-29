@@ -1,15 +1,13 @@
 # ParkHere
-ParkHere is a Ruby on Rails web app that helps make parking easy!
 
-* Users can view all listings or sign up and login to create their own listing
-* When creating a listing, users will have the option to upload a photo and provide details
+ParkHere is a Ruby on Rails web app that helps make parking easy! You can view listings of available parking spaces and you can sign-up to post your own space for rent.
 
+## Installation
 
-
-
-
-
-
+1. Fork and clone this repo
+2. Run 'Bundle Install'
+3. Migrate the database: `rake db:migrate`
+4. Run `rails s`
 
 ## Contributing
 
