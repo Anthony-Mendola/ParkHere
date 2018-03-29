@@ -12,6 +12,7 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
         <li><%= link_to 'Listings', listings_path %></li>
+        <li><%= link_to 'Categories', categories_path %></li>
         <!-- Search form -->
         <%= form_tag listings_path, :method => 'get', class: 'navbar-form navbar-left' do %>
         <div class='form-group col-xs-12 floating-label-form-group controls'>

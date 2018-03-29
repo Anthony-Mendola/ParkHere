@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+before_action :authenticate_user!
+
+#will add admin only privileges only after
 
   def index
     @category = Category.new
@@ -12,7 +15,6 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find(params[:id])
-    #authorize @category
     @category.destroy
     redirect_to categories_path
   end
