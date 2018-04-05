@@ -11,25 +11,24 @@ Own a garage or parking space that you rarely use and want to make some extra si
  User data is validated using ActiveRecord ORM and model validations
  User can only CRUD their own listings
 
-# Models
+------------------------------
+Be clear on the difference between build and create when instantiating objects
+Review the specs for the project and make sure to pinpoint where in the code you're meeting each requirement
+If you have a small feature you want to add, think about how you'd build it out before the assessment. 
+Controllers:
+Using instance variables in controllers grants view access.
 
-User
-has_many :listings
+Views:
+.erb stands for embedded ruby
+putting an equal sign like <%= tells rails whatever the code within the tags returns
+we want to print out to our html.
+Every other view page uses application.html.erb by default and loads where <%= yield %>
+Link creation <%= link_to text_to_show, model_instance %>
 
-
-<div class="form-group">
-<fieldset>
-  <p>
-    Vehicle Types
-  </p>
-  <%= f.fields_for :types do |type| %>
-    <%= render 'type_fields', f: type %>
-  <% end %>
-
-  <div class="links">
-    <%= link_to_add_association '+ add type', f, :types, class: 'btn btn-primary' %>
-  </div>
-</fieldset>
-</div>
-
-listing_params["types_attributes"]["0"]["listing_types_attributes"]["0"]["length"]
+Listings index page:
+loop through each listing in the array every time, setting the current listing to the listing local variable in this code block
+<% Listing.all.each do |listing|  %>
+<%= listing.title %>
+Create links within code block <%= link_to listing.title, listing %>
+When calling Listing anywhere in this app it will reference a class which is my model.
+Listing.all returns an array of listings

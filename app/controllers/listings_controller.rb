@@ -54,7 +54,8 @@ class ListingsController < ApplicationController
   end
 
   private
-
+#Strong parameters are required so that users can't set additional keys and values on the url. We require
+#the parameter key :listing and the attributes we will permit to be set.
     def listing_params
       params.require(:listing).permit(
         :title,
