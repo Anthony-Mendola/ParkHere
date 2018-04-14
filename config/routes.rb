@@ -9,3 +9,6 @@ root 'listings#index'
 
   resources :categories
   end
+
+
+#resources method - RESTful defaults

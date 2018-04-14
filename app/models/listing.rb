@@ -72,4 +72,15 @@ class Listing < ApplicationRecord
         reviews.limit(3)
       end
 
+      def reviews_count
+        reviews.count
+      end
+
+#def most_reviews
+    #  Review.all(:select => 'listings.*, count(reviews.id) as review_count',
+    #  :joins => reviews.id,
+    #  :group => "listings.reviews.id"
+  #    :order => 'review_count')
+#end
+
   end

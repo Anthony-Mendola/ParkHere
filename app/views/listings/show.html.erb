@@ -17,8 +17,8 @@
 		<h3>Vehicle Type</h3>
 		<% @listing.listing_types.each do |listing_type| %>
 		<%= listing_type.type.name %>
-		<p>Length (in inches)</p>
-		<%= listing_type.length %>
+		<p><b>Length (in inches):</b>&nbsp;<%= listing_type.length %><p>
+
 		<%# @listing.types.each do |type| %>
 		<%#= type.name %>
 		<%#= type.listing_types.find_by(listing: @listing.id).length %>

@@ -35,7 +35,15 @@
   <h3>
     Vehicle Types
   </h3>
-	<div class="col-auto">
+	<div class="form-group">
+    <fieldset>
+			<!--
+      <% if @types.present? %>
+        <%= f.label 'Vehicle Type (select one or more types)' %>
+        <%= f.collection_select :type_ids, @types, :id, :name, {}, {multiple: true,  class: 'form-control'} %>
+      <% end %>
+		-->
+      <br/>
 			<%= f.fields_for :types do |type| %>
 			<%= type.label :name %>
 			<%= type.text_field :name, placeholder: ' Type name', class: 'form-control' %>
@@ -46,7 +54,18 @@
 			</div>
 	<% end %>
 
-<br>
+			<!--
+      <%= f.fields_for :types do |type| %>
+        <%= type.label 'or create a new type' %>
+        <%= type.text_field :name, class: 'form-control' %>
+			<%= type.fields_for :listing_types do |listing_type| %>
+			<%= listing_type.label :length %>:
+			<%= listing_type.text_field :length, placeholder: 'Length of vehicle in inches', class: 'form-control' %>
+			<% end %>
+		</fieldset>
+		<% end %>
+	-->
+
 
 	<%= f.input :contact %>
 	<%= f.input :image, as: :file %>

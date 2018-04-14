@@ -8,3 +8,5 @@ class RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :password, :password_confirmation])
   end
 end
+
+#Devise code above gives the ability to permit additional parameters.

@@ -14,3 +14,5 @@ class ApplicationController < ActionController::Base
   end
 
 end
+
+#redirect_back is a new rails 5 method to deal with HTTP_REFERER not present error

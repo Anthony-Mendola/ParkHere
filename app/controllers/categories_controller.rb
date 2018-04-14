@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
 before_action :authenticate_user!
-
 #will add admin only privileges later
 
   def index
@@ -8,10 +7,10 @@ before_action :authenticate_user!
     @categories = Category.all
   end
 
-  #def show
-  #  @listings = ListingCategory.listings_by_category(params[:id])
-  #  render :'listings/index'
-#  end
+  def show
+    @listings = ListingCategory.listings_by_category(params[:id])
+    render :'listings/index'
+  end
 
   def destroy
     @category = Category.find(params[:id])

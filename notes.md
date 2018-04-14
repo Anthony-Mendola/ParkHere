@@ -14,7 +14,7 @@ Own a garage or parking space that you rarely use and want to make some extra si
 ------------------------------
 Be clear on the difference between build and create when instantiating objects
 Review the specs for the project and make sure to pinpoint where in the code you're meeting each requirement
-If you have a small feature you want to add, think about how you'd build it out before the assessment. 
+If you have a small feature you want to add, think about how you'd build it out before the assessment.
 Controllers:
 Using instance variables in controllers grants view access.
 
@@ -32,3 +32,7 @@ loop through each listing in the array every time, setting the current listing t
 Create links within code block <%= link_to listing.title, listing %>
 When calling Listing anywhere in this app it will reference a class which is my model.
 Listing.all returns an array of listings
+
+Using Route helpers:
+Hard coded path: "/posts/#{@post.id}"
+Route helper: post_path(@post)
