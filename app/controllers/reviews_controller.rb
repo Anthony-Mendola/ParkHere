@@ -9,9 +9,9 @@ class ReviewsController < ApplicationController
     render :json => @reviews
   end
 
- # def new
-  #  @review = Review.new
-  #end
+  def new
+    @review = Review.new
+  end
 
   def create
     listing = Listing.find_by(id: params[:listing_id])

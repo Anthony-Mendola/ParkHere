@@ -76,20 +76,14 @@ $(function() {
 //Submiting Reviews via AJAX
 $(function() {
   $("#new_review").on("submit", function(e) {
-    url = this.action;
-    console.log(url);
-    data = {
-      authenticity_token: $("input[name='authenticity_token']").val(),
-      review: {
-        content: $("#review_content").val()
-      }
-    };
+
 
 $.ajax({
   type: "POST"
-  url:url,
-  data: data,
+  url: this.action,
+  data: $(this).serialize();,
   success: function(response){
+    $("#review_content").val("");
     var $ol = $("div.reviews ol")
     $ol.append(response);
   }
