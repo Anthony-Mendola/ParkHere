@@ -45,7 +45,19 @@ $(document).ready(function() {
 //Passed anonymous function so only loads when doc is ready
 $(function() {
   $("a.load_reviews").on("click", function(e) {
-    alert("You clicked this link");
+    //fire ajax
+    $.ajax({
+      method: "GET",
+      url: this.href
+    }).done(function(response) {
+      //get a response (it's the variable of the data)
+      $("div.reviews").html(response);
+
+      //Load that data into the DOM (adds it to the current page)
+    });
+
+    //load response into the html of the page
+
     e.preventDefault();
   });
 });
