@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 root 'listings#index'
 
   resources :listings do
-    resources :reviews
+    resources :reviews #Nested Resource
   end
 
   resources :categories

@@ -48,7 +48,7 @@
     <%= render 'reviews/listing_reviews', reviews: @reviews, listing: @listing %>
 
     <div class="text-center">
-      <%= link_to "View all Reviews", listing_reviews_path(@listing) %>
+			<%= link_to "View all Reviews", listing_reviews_path(@listing), :class => "load_reviews" %>
     </div>
 
   <% end %>
