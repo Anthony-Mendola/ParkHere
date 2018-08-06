@@ -10,7 +10,8 @@ class ListingsController < ApplicationController
 
   def show
     @review = Review.new
-    @reviews = @listing.most_recent_reviews
+    #@reviews = @listing.most_recent_reviews
+    @reviews = @listing.reviews
   end
 
   def new

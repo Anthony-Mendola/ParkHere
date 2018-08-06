@@ -5,24 +5,26 @@ class ReviewsController < ApplicationController
   def index
     @listing = Listing.find_by(id: params[:listing_id])
     @reviews = @listing.reviews
-
-    render :layout => false
+    #render :layout => false
+    render :json => @reviews
   end
 
-  def new
-    @review = Review.new
-  end
+ # def new
+  #  @review = Review.new
+  #end
 
   def create
     listing = Listing.find_by(id: params[:listing_id])
     @review = listing.reviews.create(user_id: current_user.id, content: review_params[:content])
+    
 
-    if @review
-      flash[:notice] = "review added"
+    if @review.save
+      #flash[:notice] = "review added"
+      render 'reviews/show', :layout => false
     else
-      flash[:alert] = "Cannot submit an empty review"
+      #flash[:alert] = "Cannot submit an empty review"
+      render "listings/show"
     end
-    redirect_to listing
   end
 
   def edit

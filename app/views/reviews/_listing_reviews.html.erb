@@ -1,5 +1,5 @@
-<ul id="reviews" class="list-unstyled">
-  <% reviews.each do |review| %>
+<ol id="reviews" class="list-unstyled">
+  <% @reviews.each do |review| %>
   <li>
     <div class="card">
       <div class="post-preview">
@@ -8,14 +8,10 @@
       <div class="card-body">
           <p>
            <%= review.content %>
-           <% if owner?(review) %>
-            <span class="review-options">
-              <%= link_to "Edit", edit_listing_review_path(listing, review) %> | <%= link_to "Delete", listing_review_path(listing, review), method: :delete %>
-            </span>
-           <% end %>
+          
          </p>
      </div>
    </div>
   </li>
  <% end %>
-</ul>
+</ol>

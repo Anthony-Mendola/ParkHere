@@ -43,15 +43,14 @@
 	<% if user_signed_in? %>
   <%= render 'reviews/form' %>
 <% end %>
-  </% if @reviews.present? %>
-    <!-- shows last 3 reviews on the listing page 
-    <%= render 'reviews/listing_reviews', reviews: @reviews, listing: @listing %>
-		-->
-    <div class="text-center">
+
+			
+		<div class="text-center">
 			<%= link_to "View all Reviews", listing_reviews_path(@listing), :class => "load_reviews" %>
     </div>
-	<!-- </% end %> -->
+
 	<div class="reviews">
+	<%= render "reviews/listing_reviews" %>
 	</div>
 
 </div>
