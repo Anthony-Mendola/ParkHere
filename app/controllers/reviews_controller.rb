@@ -5,8 +5,8 @@ class ReviewsController < ApplicationController
   def index
     @listing = Listing.find_by(id: params[:listing_id])
     @reviews = @listing.reviews
-    render :layout => false
-    #render :json => @reviews
+    #render :layout => false
+    render :json => @reviews
   end
 
   def new
