@@ -1,9 +1,6 @@
 <div class="post-banner"></div>
 <div class="container">
   <h1> All Listings</h1>
-
-
-
 <% @listings.each do |listing| %>
 <div class="col-md-3">
   <div class="thumbnail">
@@ -12,9 +9,26 @@
     <% end %>
     <p>
       <strong><%= link_to listing.title, listing %></strong>
-      </p>
-      <p><%= number_to_currency(listing.cost) %></p>
+      <button type="button" class="js-more" data-id="<%= listing.id %>">More Info</button>
+      <div id="listing-<%= listing.id %>"><%= truncate(listing.description) %></div>
+      <%= number_to_currency(listing.cost) %></p>
+     
+     
       </div>
       </div>
       <% end %>
       </div>
+
+      <script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/listings/" + id + ".json", function(data) {
+      var listing = data;
+      var descriptionText = "<p>" + listing["description"] + "</p>";
+      $("#listing-" + id).html(descriptionText);
+      
+    });
+  });
+});
+</script>

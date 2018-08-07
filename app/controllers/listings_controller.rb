@@ -6,12 +6,20 @@ class ListingsController < ApplicationController
   def index
 #  @listings = Listing.recent.search(params[:search])
   @listings = Listing.all.sort_by(&:reviews_count).reverse
+  respond_to do |format|
+    format.html { render :index }
+    format.json { render json: @listings }
   end
+end
 
   def show
     @review = Review.new
     #reviews = @listing.most_recent_reviews
     @reviews = @listing.reviews
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @listing}
+    end
   end
 
   def new
@@ -55,6 +63,11 @@ class ListingsController < ApplicationController
   def destroy
     @listing.destroy
     redirect_to root_path, notice: "Successfully deleted that listing"
+  end
+
+  def description
+    listing = Listing.find(params[:id])
+    render plain: listing.description
   end
 
   private

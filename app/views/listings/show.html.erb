@@ -5,19 +5,38 @@
 			<%= image_tag @listing.image %>
 		</div>
     </div>
-
+		<a href="#" class="js-next" data-id="<%=@listing.id%>">Next Listing</a>
   <div class="col-md-8">
 		<p>Listing Creator: <%= @listing.user.email %></p>
-		<h1><%= @listing.title %></h1>
+		<h1 class="listingName"><%= @listing.title %></h1>
 		<p>Category</p><h3><%= display_listing_categories(@listing.categories) %></h3>
-		<p><%= number_to_currency @listing.cost %></p>
+		<p class="listingPrice"><%= number_to_currency @listing.cost %></p>
 		<h4>Contact:</h4><p><%= @listing.contact %><p>
 		<h3>Details</h3>
-		<p><%= @listing.description %></p>
+		<p class="listingDescription"><%= @listing.description %></p>
 		<h3>Vehicle Type</h3>
 		<% @listing.listing_types.each do |listing_type| %>
 		<%= listing_type.type.name %>
 		<p><b>Length (in inches):</b>&nbsp;<%= listing_type.length %><p>
+
+	
+	
+
+		<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function() {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/listings/" + nextId + ".json", function(data) {
+      $(".listingName").text(data["name"]);
+      $(".listingPrice").text(data["price"]);
+      $(".listingDescription").text(data["description"]);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+    });
+  });
+});
+</script>
+
 
 		<%# @listing.types.each do |type| %>
 		<%#= type.name %>
@@ -44,15 +63,14 @@
   <%= render 'reviews/form' %>
 <% end %>
 
-<div class="reviews">
+<div class="text-center">
+			<%= link_to "View all Reviews", listing_reviews_path(@listing), :class => "load_reviews" %>
+		</div>
+		
+		<div class="reviews">
 		<ol>
 		</ol>
 		</div>
-			
-		<div class="text-center">
-			<%= link_to "View all Reviews", listing_reviews_path(@listing), :class => "load_reviews" %>
-    </div>
-
 		
 
 </div>

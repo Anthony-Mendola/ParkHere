@@ -48,10 +48,10 @@ $(document).ready(function() {
 $(function() {
   $("a.load_reviews").on("click", function(e) {
     //fire ajax
-    //$.ajax({
+    // $.ajax({
     // method: "GET",
     // url: this.href
-    //   }).done(function(response) {
+    //    }).done(function(response) {
     //get a response (it's the variable of the data)
     //   $("div.reviews").html(response);
 
@@ -71,25 +71,20 @@ $(function() {
     //load response into the html of the page
     e.preventDefault();
   });
-});
 
-//Submiting Reviews via AJAX
-$(function() {
+  //Submiting Reviews via AJAX
+
   $("#new_review").on("submit", function(e) {
-
-
-$.ajax({
-  type: "POST"
-  url: this.action,
-  data: $(this).serialize();,
-  success: function(response){
-    $("#review_content").val("");
-    var $ol = $("div.reviews ol")
-    $ol.append(response);
-  }
-})
-
-
+    $.ajax({
+      type: "POST",
+      url: this.action,
+      data: $(this).serialize(),
+      success: function(response) {
+        $("#review_content").val("");
+        var $ol = $("div.reviews ol");
+        $ol.append(response);
+      }
+    });
 
     e.preventDefault();
   });
