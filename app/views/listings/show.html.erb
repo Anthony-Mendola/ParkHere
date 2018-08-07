@@ -44,14 +44,16 @@
   <%= render 'reviews/form' %>
 <% end %>
 
+<div class="reviews">
+		<ol>
+		</ol>
+		</div>
 			
 		<div class="text-center">
 			<%= link_to "View all Reviews", listing_reviews_path(@listing), :class => "load_reviews" %>
     </div>
 
-		<div class="reviews">
-		<%= render "reviews/listing_reviews" %>
-		</div>
+		
 
 </div>
 </div>
