@@ -1,18 +1,19 @@
 <div class="post-banner"></div>
-<div class="container">
+
   <h1> All Listings</h1>
+  <div class="container-fluid">
 <% @listings.each do |listing| %>
 <div class="col-md-3">
-  <div class="thumbnail">
+  <div class="thumbnail fluid ow">
+ 
     <%= link_to listing do %>
     <%= image_tag listing.image, class: 'listing-images' %>
     <% end %>
-    <p>
+    <p class="fluid ow">
       <strong><%= link_to listing.title, listing %></strong>
       <button type="button" class="js-more" data-id="<%= listing.id %>">More Info</button>
       <div id="listing-<%= listing.id %>"><%= truncate(listing.description) %></div>
       <%= number_to_currency(listing.cost) %></p>
-     
      
       </div>
       </div>
