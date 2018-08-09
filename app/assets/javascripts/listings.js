@@ -89,3 +89,10 @@ $(function() {
     e.preventDefault();
   });
 });
+
+// Creates Review model object
+function Review(attributes) {
+  this.id = attributes.id;
+  this.content = attributes.content;
+  this.user_id = attributes.user_id;
+}

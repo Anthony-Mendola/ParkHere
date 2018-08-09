@@ -28,6 +28,8 @@ before_action :authenticate_user!
     redirect_to categories_path
   end
 
+
+
   private
 
   def category_params

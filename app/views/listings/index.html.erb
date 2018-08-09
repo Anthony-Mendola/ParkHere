@@ -13,11 +13,14 @@
       <strong><%= link_to listing.title, listing %></strong>
       <button type="button" class="js-more" data-id="<%= listing.id %>">More Info</button>
       <div id="listing-<%= listing.id %>"><%= truncate(listing.description) %></div>
-      <%= number_to_currency(listing.cost) %></p>
+      <%= number_to_currency(listing.cost) %>
+      <br>
+      </p>
      
       </div>
       </div>
       <% end %>
+      
       </div>
 
       <script type="text/javascript" charset="utf-8">

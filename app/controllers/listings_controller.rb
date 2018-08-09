@@ -4,8 +4,8 @@ class ListingsController < ApplicationController
   before_action only: [:edit, :update, :destroy] { authorize_user!(@listing) }
 
   def index
-#  @listings = Listing.recent.search(params[:search])
-  @listings = Listing.all.sort_by(&:reviews_count).reverse
+  @listings = Listing.recent.search(params[:search])
+  #@listings = Listing.all.sort_by(&:reviews_count).reverse
   respond_to do |format|
     format.html { render :index }
     format.json { render json: @listings }
