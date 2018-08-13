@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require handlebars
 //= require twitter/bootstrap
 //= require clean-blog.min
 //= require_tree .

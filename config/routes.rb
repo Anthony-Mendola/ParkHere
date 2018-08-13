@@ -7,8 +7,10 @@ root 'listings#index'
     resources :reviews #Nested Resource
   end
 
-  resources :categories
+  resources :categories do
+    resources :listings
   end
+end
 
 
 #resources method - RESTful defaults

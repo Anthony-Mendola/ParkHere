@@ -87,12 +87,33 @@ $(function() {
     });
 
     e.preventDefault();
-  });
+  }); 
 });
+
+  /* $("#new_review").on("submit", function(e) {
+    $.ajax({
+      type: "POST",
+      url: this.action,
+      data: $(this).serialize(),
+      success: function(json) {
+        $("#review_content").val("");
+        var review = new Review(json);
+        var reviewLi = review.renderLi()
+        var $ol = $("div.reviews ol");
+        $ol.append(reviewLi);
+      }
+    });
+
+    e.preventDefault();
+
+
+});
+
+Review.prototype.renderLi = function
 
 // Creates Review model object
 function Review(attributes) {
   this.id = attributes.id;
   this.content = attributes.content;
   this.user_id = attributes.user_id;
-}
+} */

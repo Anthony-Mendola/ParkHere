@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
     @listing = Listing.find_by(id: params[:listing_id])
     @reviews = @listing.reviews
     #render :layout => false
-    #render :json => @reviews
+    render :json => @reviews
   end
 
   def new

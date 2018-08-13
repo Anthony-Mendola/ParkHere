@@ -1,6 +1,3 @@
-<#%= render 'listing_reviews', reviews: @reviews, listing: @listing %>
-<#%= link_to "<< Back to Listing", listing_path(@listing), class: 'btn btn-primary btn-small'%>
-
 <ol>
   <% @reviews.each do |review| %>
   <li><%= review.content %></li>
