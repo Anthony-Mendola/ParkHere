@@ -1,12 +1,8 @@
 $(function() {
   $("a.load_listings").on("click", function(e) {
-    //AJAX
-    $.ajax({
-      method: "GET",
-      url: this.href
-    }).done(function(data) {
+    $.get(this.href).success(function(response) {
       //Response
-      $("div.listings").html(data);
+      $("div.listings").html(response);
     });
 
     //Load to DOM
