@@ -9,7 +9,11 @@ before_action :authenticate_user!
 
   def show
     @listings = ListingCategory.listings_by_category(params[:id])
-    render :'listings/index', :layout => false
+    #render :'listings/index', :layout => false
+    respond_to do |format|
+      format.html { render 'listings/index', :layout => false }
+      format.json { render json: @listing}
+end
 end
 
   def destroy
