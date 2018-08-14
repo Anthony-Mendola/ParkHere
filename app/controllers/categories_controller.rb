@@ -5,13 +5,12 @@ before_action :authenticate_user!
   def index
     @category = Category.new
     @categories = Category.all
-    render 'categories/index'
   end
 
   def show
     @listings = ListingCategory.listings_by_category(params[:id])
     render :'listings/index', :layout => false
-  end
+end
 
   def destroy
     @category = Category.find(params[:id])

@@ -7,5 +7,6 @@ $(function() {
 
     //Load to DOM
     e.preventDefault();
+    $("html,body").animate({ scrollTop: $("div.listings").offset().top }, 1000);
   });
 });
