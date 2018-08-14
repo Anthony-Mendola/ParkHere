@@ -45,7 +45,7 @@ $(document).ready(function() {
 
 //Loading Reviews via AJAX
 //Passed anonymous function so only loads when doc is ready
-$(function() {
+/*$(function() {
   $("a.load_reviews").on("click", function(e) {
     //fire ajax
     // $.ajax({
@@ -72,7 +72,7 @@ $(function() {
     e.preventDefault();
   });
 });
-
+*/
 //Submiting Reviews via AJAX
 /*
   $("#new_review").on("submit", function(e) {
@@ -140,8 +140,8 @@ Review.prototype.renderDisplay = function() {
 };
 
 $(function() {
-  $("form#new_review").on("submit", function(event) {
-    event.preventDefault();
+  $("form#new_review").on("submit", function(e) {
+    e.preventDefault();
     var $form = $(this);
     var action = $form.attr("action");
     // Processes the review(form data)to convert from an object to a string.
