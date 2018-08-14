@@ -94,3 +94,11 @@ $(function () {
 	cost = '<%= j number_to_currency(@listing.cost) %>';
 	address = '<%= j @listing.address %>';
 <% end %>
+
+<div id="submitted-reviews">
+<% @listing.reviews.each do |review| %>
+<div class="rev" id="review-<%= review.id %>">
+	<strong class="reviewUserName"><%= review.user.name %></strong> says: <span class="reviewContent"><%= review.content %></span>
+</div>
+<% end %>
+</div>
