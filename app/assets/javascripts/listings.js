@@ -71,9 +71,10 @@ $(function() {
     //load response into the html of the page
     e.preventDefault();
   });
+});
 
-  //Submiting Reviews via AJAX
-
+//Submiting Reviews via AJAX
+/*
   $("#new_review").on("submit", function(e) {
     $.ajax({
       type: "POST",
@@ -89,7 +90,7 @@ $(function() {
     e.preventDefault();
   });
 });
-
+*/
 /* $("#new_review").on("submit", function(e) {
     $.ajax({
       type: "POST",
@@ -130,7 +131,7 @@ Review.prototype.renderDisplay = function() {
   html +=
     "<div class='rev' id='review-' + review.id + ''>" +
     "<strong>" +
-    this.user.name +
+    this.user.id +
     "</strong>" +
     " says: " +
     this.content +

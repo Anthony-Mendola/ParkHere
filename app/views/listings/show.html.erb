@@ -62,16 +62,18 @@ $(function () {
 	<% if user_signed_in? %>
   <%= render 'reviews/form' %>
 <% end %>
+<br>
 
-<div class="text-center">
-			<%= link_to "View all Reviews", listing_reviews_path(@listing), :class => "load_reviews" %>
-		</div>
-		
-		<div class="reviews">
-		<ol>
-		</ol>
-		</div>
-		
+		<div id="submitted-reviews">
+<% @listing.reviews.each do |review| %>
+<div class="rev" id="review-<%= review.id %>">
+	<strong class="reviewUserName"><%= review.user.email %></strong> says: <span class="reviewContent"><%= review.content %></span>
+	<p><small><%= review.updated_at.strftime("%e %B %Y %H:%M %p") %></small></p>
+	<br>
+</div>
+<% end %>
+
+
 
 </div>
 </div>
@@ -95,10 +97,3 @@ $(function () {
 	address = '<%= j @listing.address %>';
 <% end %>
 
-<div id="submitted-reviews">
-<% @listing.reviews.each do |review| %>
-<div class="rev" id="review-<%= review.id %>">
-	<strong class="reviewUserName"><%= review.user.name %></strong> says: <span class="reviewContent"><%= review.content %></span>
-</div>
-<% end %>
-</div>

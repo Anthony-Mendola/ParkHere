@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
     @listing = Listing.find_by(id: params[:listing_id])
     @reviews = @listing.reviews
     #render :layout => false
-    render :json => @reviews
+    #render :json => @reviews
   end
 
   def new
@@ -20,7 +20,8 @@ class ReviewsController < ApplicationController
 
     if @review.save
       #flash[:notice] = "review added"
-      render 'reviews/show', :layout => false
+      #render 'reviews/show', :layout => false
+      render json: @review
     else
       #flash[:alert] = "Cannot submit an empty review"
       render "listings/show"

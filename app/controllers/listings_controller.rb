@@ -23,6 +23,8 @@ end
     end
   end
 
+
+
   def new
     @listing = Listing.new
     #@types = Type.all
