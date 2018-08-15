@@ -43,6 +43,24 @@ $(document).ready(function() {
   google.maps.event.addDomListener(window, "load", initialize);
 });
 
+//Listing js
+
+$(function () {
+  var listingArray = [];
+  var id = parseInt($(".js-next").attr("data-id"));
+
+  if ($("#listingsInfo").length) {
+    loadAllListings();
+  }
+
+  function loadAllListings() {
+    $.ajax({
+      url: "/listings.json",
+      method: 'GET'
+    })
+});
+
+
 //Loading Reviews via AJAX
 //Passed anonymous function so only loads when doc is ready
 /*$(function() {
@@ -202,4 +220,5 @@ $(function() {
     });
     e.preventDefault();
   });
-});
+})
+

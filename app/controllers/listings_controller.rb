@@ -14,8 +14,8 @@ end
 
 
   def show
+    @listing = Listing.find(params[:id])
     @review = Review.new
-    #reviews = @listing.most_recent_reviews
     @reviews = @listing.reviews
     respond_to do |format|
       format.html { render :show }
@@ -23,6 +23,17 @@ end
     end
   end
 
+  def next_listing
+    @listing = Listing.find(params[:id])
+    @next_listing = @listing.next
+    render json: @next_listing
+  end
+
+  def previous_listing
+    @listing = Listing.find(params[:id])
+    @previous_listing = @listing.previous
+    render json: @previous_listing
+  end
 
 
   def new

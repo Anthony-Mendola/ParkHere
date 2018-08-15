@@ -6,5 +6,31 @@
     </div>
     </div>
     <div class="col-md-8">
+    <h1 class="listingName"><%= @listing.title %></h1>
     <p>Listing Creator: <span class="listingName"><%= @listing.user.email %></span></p>
+    <span>Category</span><span class="listingCategory"><strong><%= display_listing_categories(@listing.categories) %></strong></span>
+    
+    <a href="#" class="js-next btn btn-primary btn-sm" data-id="<%=@listing.id%>">View Next Listing</a>
+    <a href="#" class="js-previous btn btn-primary btn-sm" data-id="<%=@listing.id%>">View Previous Listing</a>
+
     </div>
+    </div>
+    </div>
+
+    <div class="container">
+<div class="listing-reviews">
+  <h3>Reviews</h3>
+	<% if user_signed_in? %>
+  <%= render 'reviews/form' %>
+<% end %>
+<br>
+
+		<div id="submitted-reviews">
+<% @listing.reviews.each do |review| %>
+<div class="rev" id="review-<%= review.id %>">
+	<strong class="reviewUserName"><%= review.user.email %></strong> says: <span class="reviewContent"><%= review.content %></span><br>
+  <span><small><%= review.updated_at.strftime("%e %B %Y %H:%M %p") %></small></span>
+  <br>
+	<br>
+</div>
+<% end %>
