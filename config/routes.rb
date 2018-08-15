@@ -10,6 +10,10 @@ root 'listings#index'
   resources :categories do
     resources :listings
   end
+
+  get '/listings/:id/next', to: 'listings#next_listing'
+
+  get '/listings/:id/previous', to: 'listings#previous_listing'
 end
 
 

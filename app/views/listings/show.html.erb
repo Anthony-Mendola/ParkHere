@@ -5,12 +5,31 @@
     <%= image_tag @listing.image %>
     </div>
     </div>
+    <div class="btn-group" role="group">
+      <div class="form-buttons">
+        <% if owner?(@listing) %>
+          <%= link_to "Edit listing", edit_listing_path(@listing), class: 'btn btn-outline-primary btn-sm'%>
+          <%= link_to "Delete listing", @listing, method: :delete, data: { confirm: "Are you sure you want to delete this listing?"}, class: 'btn btn-outline-danger btn-sm' %>
+        <% end %>
+      </div>
+    </div>
     <div class="col-md-8">
     <h1 class="listingName"><%= @listing.title %></h1>
     <p>Listing Creator: <span class="listingName"><%= @listing.user.email %></span></p>
     <span>Category</span><span class="listingCategory"><strong><%= display_listing_categories(@listing.categories) %></strong></span>
+    <h4>Contact:</h4><p class="listingContact"><%= @listing.contact %><p>
+    <h3>Details</h3>
+    <p class="listingDescription"><%= @listing.description %></p>
+    <h3>Vehicle Type</h3><p class="listingType">
+		<% @listing.listing_types.each do |listing_type| %>
+		<%= listing_type.type.name %></p>
+    <p class="listingLength"><b>Length (in inches):</b>&nbsp;<%= listing_type.length %><p>
+    <% end %>
+
     
+    <br>
     <a href="#" class="js-next btn btn-primary btn-sm" data-id="<%=@listing.id%>">View Next Listing</a>
+
     <a href="#" class="js-previous btn btn-primary btn-sm" data-id="<%=@listing.id%>">View Previous Listing</a>
 
     </div>
@@ -34,3 +53,4 @@
 	<br>
 </div>
 <% end %>
+

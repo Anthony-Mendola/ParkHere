@@ -83,4 +83,24 @@ class Listing < ApplicationRecord
   #    :order => 'review_count')
 #end
 
+def next
+  # if the first listing is greater the current one exists then return the next destination
+  if next_list = self.class.where("id > ?", id).first
+    next_list
+  else
+    Listing.first
+  end
+end
+
+def previous
+  # if the destination is less then current one exists then return the previous destination
+  if previous_list = self.class.where("id < ?", id).last
+    previous_list
+  else
+    Listing.last
+  end
+end
+
+
+
   end
