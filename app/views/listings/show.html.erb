@@ -1,8 +1,8 @@
 <div class="container">
 <div class="row">
-	<div class="col-md-4">
-    <div class="thumbnail listingImage">
-    <%= image_tag @listing.image %>
+  <div class="col-md-4">
+    <div class="thumbnail">
+    <img class="listingImage">
     </div>
     </div>
     <div class="btn-group" role="group">
@@ -15,27 +15,32 @@
     </div>
     <div class="col-md-8">
     <h1 class="listingName"><%= @listing.title %></h1>
-    <p>Listing Creator: <span class="listingName"><%= @listing.user.email %></span></p>
-    <span>Category</span><span class="listingCategory"><strong><%= display_listing_categories(@listing.categories) %></strong></span>
-    <p class="listingCost"><%= number_to_currency @listing.cost %></p>
+
+    <p>Listing Creator: <span class="listingUserName"><%= @listing.user.email %></span></p>
+
+    <p><strong>Category</strong><span class="listingCategory"><%= display_listing_categories(@listing.categories) %></span></p>
+
+    <span class="listingCost"><%= number_to_currency @listing.cost %></span>
+    
     <p><strong>Contact:</strong><br><span class="listingContact"><%= @listing.contact %><span></p>
+
     <h3>Details</h3>
-    <p class="listingDescription"><%= @listing.description %></p>
+    <span class="listingDescription"><%=@listing.description%></span>
+
     <h3>Vehicle Type</h3><p class="listingType">
 		<% @listing.listing_types.each do |listing_type| %>
-		<%= listing_type.type.name %></p>
+    <%= listing_type.type.name %></p>
+    
     <p class="listingLength"><b>Length (in inches):</b>&nbsp;<%= listing_type.length %><p>
     <% end %>
 
     
     <br>
-    <a href="#" class="js-next btn btn-primary btn-sm" data-id="<%=@listing.id%>">View Next Listing</a>
-
-    <a href="#" class="js-previous btn btn-primary btn-sm" data-id="<%=@listing.id%>">View Previous Listing</a>
-
+    <a href="#" class="js-previous btn btn-primary btn-sm" data-id="<%=@listing.id%>">Previous Listing</a>
+    
+    <a href="#" class="js-next btn btn-primary btn-sm" data-id="<%=@listing.id%>">Next Listing</a>
     </div>
-    </div>
-    </div>
+    
 
     <div class="container">
 <div class="listing-reviews">
