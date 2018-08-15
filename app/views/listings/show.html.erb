@@ -1,99 +1,10 @@
 <div class="container">
 <div class="row">
 	<div class="col-md-4">
-		<div class="thumbnail">
-			<%= image_tag @listing.image %>
-		</div>
+    <div class="thumbnail listingImage">
+    <%= image_tag @listing.image %>
     </div>
-		<a href="#" class="js-next" data-id="<%=@listing.id%>">Next Listing</a>
-  <div class="col-md-8">
-		<p>Listing Creator: <%= @listing.user.email %></p>
-		<h1 class="listingName"><%= @listing.title %></h1>
-		<p>Category</p><h3><%= display_listing_categories(@listing.categories) %></h3>
-		<p class="listingPrice"><%= number_to_currency @listing.cost %></p>
-		<h4>Contact:</h4><p><%= @listing.contact %><p>
-		<h3>Details</h3>
-		<p class="listingDescription"><%= @listing.description %></p>
-		<h3>Vehicle Type</h3>
-		<% @listing.listing_types.each do |listing_type| %>
-		<%= listing_type.type.name %>
-		<p><b>Length (in inches):</b>&nbsp;<%= listing_type.length %><p>
-
-	
-	
-
-		<script type="text/javascript" charset="utf-8">
-$(function () {
-  $(".js-next").on("click", function() {
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/listings/" + nextId + ".json", function(data) {
-      $(".listingName").text(data["name"]);
-      $(".listingPrice").text(data["price"]);
-      $(".listingDescription").text(data["description"]);
-      // re-set the id to current on the link
-      $(".js-next").attr("data-id", data["id"]);
-    });
-  });
-});
-</script>
-
-
-		<%# @listing.types.each do |type| %>
-		<%#= type.name %>
-		<%#= type.listing_types.find_by(listing: @listing.id).length %>
-		<% end %>
-		</div>
-
-    <div class="btn-group" role="group">
-      <div class="form-buttons">
-        <% if owner?(@listing) %>
-          <%= link_to "Edit listing", edit_listing_path(@listing), class: 'btn btn-outline-primary btn-sm'%>
-          <%= link_to "Delete listing", @listing, method: :delete, data: { confirm: "Are you sure you want to delete this listing?"}, class: 'btn btn-outline-danger btn-sm' %>
-        <% end %>
-      </div>
     </div>
-  </div>
-</div>
-</div>
-</div>
-<div class="container">
-<div class="listing-reviews">
-  <h3>Reviews</h3>
-	<% if user_signed_in? %>
-  <%= render 'reviews/form' %>
-<% end %>
-<br>
-
-		<div id="submitted-reviews">
-<% @listing.reviews.each do |review| %>
-<div class="rev" id="review-<%= review.id %>">
-	<strong class="reviewUserName"><%= review.user.email %></strong> says: <span class="reviewContent"><%= review.content %></span>
-	<p><small><%= review.updated_at.strftime("%e %B %Y %H:%M %p") %></small></p>
-	<br>
-</div>
-<% end %>
-
-
-
-</div>
-</div>
-<br>
-<br>
-
-<div class="col-md-12">
-		<h3>Location: <%= @listing.address %></h3>
-		<div id="map-container">
-		  <div id="map-canvas"></div>
-		</div>
-	</div>
-
-<%= link_to "<< Back to Listings", root_path, class: 'btn btn-outline-primary btn-small back-to-listing-button'%>
-
-<%= javascript_tag do %>
-	latitude = '<%= j @listing.latitude.to_s %>';
-	longitude = '<%= j @listing.longitude.to_s %>';
-	title = '<%= j @listing.title %>';
-	cost = '<%= j number_to_currency(@listing.cost) %>';
-	address = '<%= j @listing.address %>';
-<% end %>
-
+    <div class="col-md-8">
+    <p>Listing Creator: <span class="listingName"><%= @listing.user.email %></span></p>
+    </div>

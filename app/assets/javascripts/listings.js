@@ -158,3 +158,48 @@ $(function() {
     });
   });
 });
+
+// Listings Show Page
+$(function() {
+  function loadListing(data) {
+    history.pushState({}, "", "/listings/" + data.id);
+    var listingReviewPath = "/listings/" + data.id + "/reviews/";
+    $("#new_review").attr("action", listingReviewPath);
+    $(".listingImage").text(data["image"]);
+    $(".listingName").text(data["title"]);
+    $(".listingUserName").text(data["user"]["email"]);
+    $(".listingAddress").text(data["address"]);
+    $(".listingLongitude").text(data["longitude"]);
+    $(".listingLatitude").text(data["latitude"]);
+    $(".listingCategory").text(data["category"]["name"]);
+    $(".listingType").text(data["type"]["name"]);
+    $(".listingDescription").text(data["description"]);
+    $(".listingCost").text(data["cost"]);
+    $(".listingLength").text(data["listing_type"]["length"]);
+    $(".js-next").attr("data-id", data["id"]);
+    $(".js-previous").attr("data-id", data["id"]);
+    $("#submitted-reviews").empty();
+    data["review_list"].forEach(function(element) {
+      var review = new Review(element);
+      review.renderDisplay();
+    });
+  }
+
+  $(".js-next").on("click", function(e) {
+    var id = $(".js-next").attr("data-id");
+    $.get("/listings/" + id + "/next", function(data) {
+      console.log(data);
+      loadListing(data);
+    });
+    e.preventDefault();
+  });
+
+  $(".js-previous").on("click", function(e) {
+    var id = $(".js-previous").attr("data-id");
+    $.get("/listings/" + id + "/previous", function(data) {
+      console.log(data);
+      loadListing(data);
+    });
+    e.preventDefault();
+  });
+});
