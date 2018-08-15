@@ -17,7 +17,8 @@
     <h1 class="listingName"><%= @listing.title %></h1>
     <p>Listing Creator: <span class="listingName"><%= @listing.user.email %></span></p>
     <span>Category</span><span class="listingCategory"><strong><%= display_listing_categories(@listing.categories) %></strong></span>
-    <h4>Contact:</h4><p class="listingContact"><%= @listing.contact %><p>
+    <p class="listingCost"><%= number_to_currency @listing.cost %></p>
+    <p><strong>Contact:</strong><br><span class="listingContact"><%= @listing.contact %><span></p>
     <h3>Details</h3>
     <p class="listingDescription"><%= @listing.description %></p>
     <h3>Vehicle Type</h3><p class="listingType">
@@ -53,4 +54,22 @@
 	<br>
 </div>
 <% end %>
+</div>
+<br>
 
+<div class="col-md-12">
+		<h3 class="listingAddress">Location: <%= @listing.address %></h3>
+		<div id="map-container">
+		  <div id="map-canvas"></div>
+		</div>
+	</div>
+
+<%= link_to "<< Back to Listings", root_path, class: 'btn btn-outline-primary btn-small back-to-listing-button'%>
+
+<%= javascript_tag do %>
+	latitude = '<%= j @listing.latitude.to_s %>';
+	longitude = '<%= j @listing.longitude.to_s %>';
+	title = '<%= j @listing.title %>';
+	cost = '<%= j number_to_currency(@listing.cost) %>';
+	address = '<%= j @listing.address %>';
+<% end %>

@@ -44,22 +44,20 @@ $(document).ready(function() {
 });
 
 //Listing js
+// $(function () {
+//   var listingArray = [];
+//   var id = parseInt($(".js-next").attr("data-id"));
 
-$(function () {
-  var listingArray = [];
-  var id = parseInt($(".js-next").attr("data-id"));
+//   if ($("#listingsInfo").length) {
+//     loadAllListings();
+//   }
 
-  if ($("#listingsInfo").length) {
-    loadAllListings();
-  }
-
-  function loadAllListings() {
-    $.ajax({
-      url: "/listings.json",
-      method: 'GET'
-    })
-});
-
+//   function loadAllListings() {
+//     $.ajax({
+//       url: "/listings.json",
+//       method: 'GET'
+//     })
+// });
 
 //Loading Reviews via AJAX
 //Passed anonymous function so only loads when doc is ready
@@ -137,10 +135,46 @@ function Review(attributes) {
   this.user_id = attributes.user_id;
 } */
 
+// Creates Review model object
+function Review(data) {
+  this.id = data.id;
+  this.content = data.content;
+  this.user = data.user;
+}
 
+Review.prototype.renderDisplay = function() {
+  var html = "";
+  html +=
+    "<div class='rev' id='review-' + review.id + ''>" +
+    "<strong>" +
+    this.user.id +
+    "</strong>" +
+    " says: " +
+    this.content +
+    "</div>";
+  $("#submitted-reviews").append(html);
+};
 
-// Listings Show Page
 $(function() {
+  $("form#new_review").on("submit", function(event) {
+    event.preventDefault();
+    var $form = $(this);
+    var action = $form.attr("action");
+    // Processes the review(form data)to convert from an object to a string.
+    var params = $form.serialize();
+    $.ajax({
+      url: action,
+      data: params,
+      dataType: "json",
+      method: "POST"
+    }).success(function(json) {
+      $(".reviewBox").val("");
+      var review = new Review(json);
+      review.renderDisplay();
+    });
+  });
+  // Listings Show Page
+
   function loadListing(data) {
     history.pushState({}, "", "/listings/" + data.id);
     var listingReviewPath = "/listings/" + data.id + "/reviews/";
@@ -182,45 +216,5 @@ $(function() {
       loadListing(data);
     });
     e.preventDefault();
-  });
-})
-
-// Creates Review model object
-function Review(data) {
-  this.id = data.id;
-  this.content = data.content;
-  this.user = data.user;
-}
-
-Review.prototype.renderDisplay = function() {
-  var html = "";
-  html +=
-    "<div class='rev' id='review-' + review.id + ''>" +
-    "<strong>" +
-    this.user.id +
-    "</strong>" +
-    " says: " +
-    this.content +
-    "</div>";
-  $("#submitted-reviews").append(html);
-};
-
-$(function() {
-  $("form#new_review").on("submit", function(e) {
-    e.preventDefault();
-    var $form = $(this);
-    var action = $form.attr("action");
-    // Processes the review(form data)to convert from an object to a string.
-    var params = $form.serialize();
-    $.ajax({
-      url: action,
-      data: params,
-      dataType: "json",
-      method: "POST"
-    }).success(function(json) {
-      $(".reviewBox").val("");
-      var review = new Review(json);
-      review.renderDisplay();
-    });
   });
 });
