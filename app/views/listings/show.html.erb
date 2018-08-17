@@ -1,8 +1,14 @@
 <div class="container">
 <div class="row">
   <div class="col-md-4">
-    <div class="thumbnail">
-    <img class="listingImage">
+  
+  <%
+=begin %>
+    <div class="thumbnail listingImage" id="picture">
+    <%= image_tag @listing.image %>
+<%
+=end %>
+
     </div>
     </div>
     <div class="btn-group" role="group">

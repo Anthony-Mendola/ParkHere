@@ -44,24 +44,44 @@ $(document).ready(function() {
 });
 
 //Listing js
-// $(function () {
-//   var listingArray = [];
-//   var id = parseInt($(".js-next").attr("data-id"));
+$(function() {
+  var listingArray = [];
+  var id = parseInt($(".js-next").attr("data-id"));
 
-//   if ($("#listingsInfo").length) {
-//     loadAllListings();
-//   }
+  if ($("#listingsInfo").length) {
+    loadAllListings();
+  }
 
-//   function loadAllListings() {
-//     $.ajax({
-//       url: "/listings.json",
-//       method: 'GET'
-//     })
-// });
+  function loadAllListings() {
+    $.ajax({
+      url: "/listings.json",
+      method: "GET"
+    })
+      // promise
+      .then(function(data) {
+        listingArray = data;
+        $.each(listingArray, function(index, listing) {
+          var listingData =
+            "<p><a href='/listings/" +
+            listing.id +
+            "'>" +
+            listing.title +
+            "</a><div id='content-" +
+            listing.id +
+            "'>" +
+            listing.content.substring(0, 250) +
+            "..." +
+            "<a href='#' data-id='" +
+            listing.id +
+            "' class='js-more'>Read More</a></div><br>";
+          $("#listingsInfo").append(listingData);
+        });
+      });
+  }
 
-//Loading Reviews via AJAX
-//Passed anonymous function so only loads when doc is ready
-/*$(function() {
+  //Loading Reviews via AJAX
+  //Passed anonymous function so only loads when doc is ready
+  /*$(function() {
   $("a.load_reviews").on("click", function(e) {
     //fire ajax
     // $.ajax({
@@ -89,8 +109,8 @@ $(document).ready(function() {
   });
 });
 */
-//Submiting Reviews via AJAX
-/*
+  //Submiting Reviews via AJAX
+  /*
   $("#new_review").on("submit", function(e) {
     $.ajax({
       type: "POST",
@@ -107,7 +127,7 @@ $(document).ready(function() {
   });
 });
 */
-/* $("#new_review").on("submit", function(e) {
+  /* $("#new_review").on("submit", function(e) {
     $.ajax({
       type: "POST",
       url: this.action,
@@ -134,6 +154,52 @@ function Review(attributes) {
   this.content = attributes.content;
   this.user_id = attributes.user_id;
 } */
+
+  // Listings Show Page
+
+  function loadListing(data) {
+    history.pushState({}, "", "/listings/" + data.id);
+    var listingReviewPath = "/listings/" + data.id + "/reviews/";
+    $("#new_review").attr("action", listingReviewPath);
+    //$(".listingImage").text(data["image"]);
+    $(".listingName").text(data["title"]);
+    $(".listingDescription").text(data["description"]);
+    $(".listingCategory").text(data["categories"]["name"]);
+    $(".listingContact").text(data["contact"]);
+    $(".listingUserName").text(data["user"]["email"]);
+    $(".listingAddress").text(data["address"]);
+    $(".listingType").text(data["types"]["name"]);
+    $(".listingCost").text(data["cost"]);
+    $(".listingLength").text(data["listing_types"]["length"]);
+    $(".listingLongitude").text(data["longitude"]);
+    $(".listingLatitude").text(data["latitude"]);
+    $(".js-next").attr("data-id", data["id"]);
+    $(".js-previous").attr("data-id", data["id"]);
+    $("#submitted-reviews").empty();
+    data["review_list"].forEach(function(element) {
+      var review = new Review(element);
+      review.renderDisplay();
+    });
+  }
+
+  $(".js-next").on("click", function(e) {
+    var id = $(".js-next").attr("data-id");
+    $.get("/listings/" + id + "/next", function(data) {
+      console.log(data);
+      loadListing(data);
+    });
+    e.preventDefault();
+  });
+
+  $(".js-previous").on("click", function(e) {
+    var id = $(".js-previous").attr("data-id");
+    $.get("/listings/" + id + "/previous", function(data) {
+      console.log(data);
+      loadListing(data);
+    });
+    e.preventDefault();
+  });
+});
 
 // Creates Review model object
 function Review(data) {
@@ -172,49 +238,5 @@ $(function() {
       var review = new Review(json);
       review.renderDisplay();
     });
-  });
-  // Listings Show Page
-
-  function loadListing(data) {
-    history.pushState({}, "", "/listings/" + data.id);
-    var listingReviewPath = "/listings/" + data.id + "/reviews/";
-    $("#new_review").attr("action", listingReviewPath);
-    $(".listingImage").text(data["image"]);
-    $(".listingName").text(data["title"]);
-    $(".listingDescription").text(data["description"]);
-    $(".listingCategory").text(data["categories"]["name"]);
-    $(".listingContact").text(data["contact"]);
-    $(".listingUserName").text(data["user"]["email"]);
-    $(".listingAddress").text(data["address"]);
-    $(".listingType").text(data["types"]["name"]);
-    $(".listingCost").text(data["cost"]);
-    $(".listingLength").text(data["listing_types"]["length"]);
-    $(".listingLongitude").text(data["longitude"]);
-    $(".listingLatitude").text(data["latitude"]);
-    $(".js-next").attr("data-id", data["id"]);
-    $(".js-previous").attr("data-id", data["id"]);
-    $("#submitted-reviews").empty();
-    data["review_list"].forEach(function(element) {
-      var review = new Review(element);
-      review.renderDisplay();
-    });
-  }
-
-  $(".js-next").on("click", function(e) {
-    var id = $(".js-next").attr("data-id");
-    $.get("/listings/" + id + "/next", function(data) {
-      console.log(data);
-      loadListing(data);
-    });
-    e.preventDefault();
-  });
-
-  $(".js-previous").on("click", function(e) {
-    var id = $(".js-previous").attr("data-id");
-    $.get("/listings/" + id + "/previous", function(data) {
-      console.log(data);
-      loadListing(data);
-    });
-    e.preventDefault();
   });
 });
