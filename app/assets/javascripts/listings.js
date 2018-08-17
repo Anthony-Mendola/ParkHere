@@ -79,6 +79,16 @@ $(function() {
       });
   }
 
+  // For the listings index page
+
+  $("#listingsInfo").on("click", ".js-more", function(e) {
+    e.preventDefault();
+    var id = this.dataset.id;
+    $.get("/listings/" + id + ".json", function(data) {
+      $("#content-" + id).html(data.content);
+    });
+  });
+
   //Loading Reviews via AJAX
   //Passed anonymous function so only loads when doc is ready
   /*$(function() {
@@ -156,7 +166,6 @@ function Review(attributes) {
 } */
 
   // Listings Show Page
-
   function loadListing(data) {
     history.pushState({}, "", "/listings/" + data.id);
     var listingReviewPath = "/listings/" + data.id + "/reviews/";
@@ -175,10 +184,10 @@ function Review(attributes) {
     $(".listingLatitude").text(data["latitude"]);
     $(".js-next").attr("data-id", data["id"]);
     $(".js-previous").attr("data-id", data["id"]);
-    $("#submitted-reviews").empty();
+    //$("#submitted-reviews").empty();
     data["review_list"].forEach(function(element) {
       var review = new Review(element);
-      review.renderDisplay();
+      review.postReview();
     });
   }
 
@@ -208,7 +217,7 @@ function Review(data) {
   this.user = data.user;
 }
 
-Review.prototype.renderDisplay = function() {
+Review.prototype.postReview = function() {
   var html = "";
   html +=
     "<div class='rev' id='review-' + review.id + ''>" +
@@ -236,7 +245,7 @@ $(function() {
     }).success(function(json) {
       $(".reviewBox").val("");
       var review = new Review(json);
-      review.renderDisplay();
+      review.postReview();
     });
   });
 });

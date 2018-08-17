@@ -11,10 +11,10 @@ root 'listings#index'
     resources :listings
   end
 
-  get '/listings/:id/next', to: 'listings#next_listing'
+   get '/listings/:id/next', to: 'listings#next_listing'
 
-  get '/listings/:id/previous', to: 'listings#previous_listing'
-end
+   get '/listings/:id/previous', to: 'listings#previous_listing'
+ end
 
 
 #resources method - RESTful defaults

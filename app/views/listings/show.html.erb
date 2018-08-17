@@ -1,13 +1,10 @@
 <div class="container">
 <div class="row">
   <div class="col-md-4">
-  
-  <%
-=begin %>
-    <div class="thumbnail listingImage" id="picture">
+
+   <div class="thumbnail listingImage">
     <%= image_tag @listing.image %>
-<%
-=end %>
+
 
     </div>
     </div>
@@ -48,24 +45,7 @@
     </div>
     
 
-    <div class="container">
-<div class="listing-reviews">
-  <h3>Reviews</h3>
-	<% if user_signed_in? %>
-  <%= render 'reviews/form' %>
-<% end %>
-<br>
-
-		<div id="submitted-reviews">
-<% @listing.reviews.each do |review| %>
-<div class="rev" id="review-<%= review.id %>">
-	<strong class="reviewUserName"><%= review.user.email %></strong> says: <span class="reviewContent"><%= review.content %></span><br>
-  <span><small><%= review.updated_at.strftime("%e %B %Y %H:%M %p") %></small></span>
-  <br>
-	<br>
-</div>
-<% end %>
-</div>
+  
 <br>
 
 <div class="col-md-12">
@@ -84,3 +64,21 @@
 	cost = '<%= j number_to_currency(@listing.cost) %>';
 	address = '<%= j @listing.address %>';
 <% end %>
+
+<div class="container">
+<div class="listing-reviews">
+  <h3>Reviews</h3>
+	<% if user_signed_in? %>
+  <%= render 'reviews/form' %>
+<% end %>
+<br>
+		<div id="submitted-reviews">
+<% @listing.reviews.each do |review| %>
+<div class="rev" id="review-<%= review.id %>">
+	<strong class="reviewUserName"><%= review.user.email %></strong> says: <span class="reviewContent"><%= review.content %></span><br>
+  <span><small><%= review.updated_at.strftime("%e %B %Y %H:%M %p") %></small></span>
+  <br>
+	<br>
+</div>
+<% end %>
+</div>
